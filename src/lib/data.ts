@@ -10,31 +10,6 @@ export const currencies: CurrencyConfig[] = [
 
 export const products: Product[] = [
   {
-    id: 'achi-flour',
-    name: 'Achi Flour',
-    category: 'Flours',
-    description: 'Premium quality Achi flour, finely ground from the Achi seed. A staple thickening agent in Nigerian cuisine.',
-    usedFor: 'Used to thicken soups like Oha, Egusi, and Ogbono. Adds a rich, nutty flavor and silky texture to traditional dishes.',
-    images: ['/placeholder.svg'],
-    variants: [
-      { id: 'achi-100g', weight: '100g', price: 3, inStock: true },
-      { id: 'achi-200g', weight: '200g', price: 5, inStock: true },
-    ],
-    featured: true,
-  },
-  {
-    id: 'dehydrated-afang',
-    name: 'Dehydrated Afang',
-    category: 'Leaves',
-    description: 'Premium dehydrated Afang leaves, carefully processed to preserve nutrients and authentic flavor.',
-    usedFor: 'Essential for preparing the famous Afang soup, a delicacy from the Efik and Ibibio people of Nigeria.',
-    images: ['/placeholder.svg'],
-    variants: [
-      { id: 'afang-150g', weight: '150g', price: 10, inStock: true },
-    ],
-    featured: true,
-  },
-  {
     id: 'dehydrated-bitter-leaf',
     name: 'Dehydrated Bitter Leaf',
     category: 'Leaves',
@@ -54,17 +29,6 @@ export const products: Product[] = [
     images: ['/products/dehydratedguava.jpg'],
     variants: [
       { id: 'guava-150g', weight: '150g', price: 12, inStock: true },
-    ],
-  },
-  {
-    id: 'dehydrated-sage-leaf',
-    name: 'Dehydrated Sage Leaf',
-    category: 'Leaves',
-    description: 'Aromatic sage leaves, naturally dried to maintain their essential oils and flavor.',
-    usedFor: 'Used in cooking, herbal teas, and traditional remedies. Adds earthy, savory notes to dishes.',
-    images: ['/placeholder.svg'],
-    variants: [
-      { id: 'sage-150g', weight: '150g', price: 10, inStock: true },
     ],
   },
   {
@@ -123,17 +87,6 @@ export const products: Product[] = [
       { id: 'fufu-2kg', weight: '2kg', price: 20, inStock: true },
     ],
     featured: true,
-  },
-  {
-    id: 'habanero',
-    name: 'Habanero Pepper',
-    category: 'Spices',
-    description: 'Dried and ground habanero pepper, bringing authentic heat to your dishes.',
-    usedFor: 'Add fiery heat to soups, stews, and sauces. A little goes a long way!',
-    images: ['/placeholder.svg'],
-    variants: [
-      { id: 'habanero-150g', weight: '150g', price: 7, inStock: true },
-    ],
   },
   {
     id: 'ijebu-gari',
@@ -209,17 +162,6 @@ export const products: Product[] = [
     ],
   },
   {
-    id: 'semovita',
-    name: 'Semovita',
-    category: 'Grains',
-    description: 'Premium semolina-based flour for preparing smooth, stretchy swallow.',
-    usedFor: 'Prepare delicious semovita swallow to enjoy with your favorite Nigerian soups.',
-    images: ['/placeholder.svg'],
-    variants: [
-      { id: 'semo-unit', weight: 'Per pack', price: null, inStock: true },
-    ],
-  },
-  {
     id: 'dried-zobo',
     name: 'Dried Zobo (Hibiscus)',
     category: 'Leaves',
@@ -258,6 +200,64 @@ export const products: Product[] = [
       { id: 'crayfish-1kg', weight: '1kg', price: 65, inStock: true },
     ],
     featured: true,
+  },
+  {
+    id: 'achi-flour',
+    name: 'Achi Flour',
+    category: 'Flours',
+    description: 'Premium quality Achi flour, finely ground from the Achi seed. A staple thickening agent in Nigerian cuisine.',
+    usedFor: 'Used to thicken soups like Oha, Egusi, and Ogbono. Adds a rich, nutty flavor and silky texture to traditional dishes.',
+    images: ['/placeholder.svg'],
+    variants: [
+      { id: 'achi-100g', weight: '100g', price: 3, inStock: true },
+      { id: 'achi-200g', weight: '200g', price: 5, inStock: true },
+    ],
+    featured: true,
+  },
+  {
+    id: 'dehydrated-afang',
+    name: 'Dehydrated Afang',
+    category: 'Leaves',
+    description: 'Premium dehydrated Afang leaves, carefully processed to preserve nutrients and authentic flavor.',
+    usedFor: 'Essential for preparing the famous Afang soup, a delicacy from the Efik and Ibibio people of Nigeria.',
+    images: ['/placeholder.svg'],
+    variants: [
+      { id: 'afang-150g', weight: '150g', price: 10, inStock: true },
+    ],
+    featured: true,
+  },
+  {
+    id: 'dehydrated-sage-leaf',
+    name: 'Dehydrated Sage Leaf',
+    category: 'Leaves',
+    description: 'Aromatic sage leaves, naturally dried to maintain their essential oils and flavor.',
+    usedFor: 'Used in cooking, herbal teas, and traditional remedies. Adds earthy, savory notes to dishes.',
+    images: ['/placeholder.svg'],
+    variants: [
+      { id: 'sage-150g', weight: '150g', price: 10, inStock: true },
+    ],
+  },
+  {
+    id: 'habanero',
+    name: 'Habanero Pepper',
+    category: 'Spices',
+    description: 'Dried and ground habanero pepper, bringing authentic heat to your dishes.',
+    usedFor: 'Add fiery heat to soups, stews, and sauces. A little goes a long way!',
+    images: ['/placeholder.svg'],
+    variants: [
+      { id: 'habanero-150g', weight: '150g', price: 7, inStock: true },
+    ],
+  },
+  {
+    id: 'semovita',
+    name: 'Semovita',
+    category: 'Grains',
+    description: 'Premium semolina-based flour for preparing smooth, stretchy swallow.',
+    usedFor: 'Prepare delicious semovita swallow to enjoy with your favorite Nigerian soups.',
+    images: ['/placeholder.svg'],
+    variants: [
+      { id: 'semo-unit', weight: 'Per pack', price: null, inStock: true },
+    ],
   },
 ];
 

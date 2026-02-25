@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import React, { createContext, useContext, useState, useCallback, ReactNode, useEffect } from 'react';
 import { CartItem, Currency, CurrencyConfig } from '@/lib/types';
 import { currencies, products } from '@/lib/data';
 
@@ -22,9 +22,33 @@ interface CartContextType {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
-  const [items, setItems] = useState<CartItem[]>([]);
-  const [currency, setCurrencyState] = useState<CurrencyConfig>(currencies[0]);
-  const [orderNote, setOrderNote] = useState('');
+  const [items, setItems] = useState<CartItem[]>(() => {
+    const saved = localStorage.getItem('triumphstrides_cart');
+    return saved ? JSON.parse(saved) : [];
+  });
+  const [currency, setCurrencyState] = useState<CurrencyConfig>(() => {
+    const saved = localStorage.getItem('triumphstrides_currency');
+    return saved ? currencies.find(c => c.code === saved) || currencies[0] : currencies[0];
+  });
+  const [orderNote, setOrderNoteState] = useState(() => {
+    return localStorage.getItem('triumphstrides_orderNote') || '';
+  });
+
+  useEffect(() => {
+    localStorage.setItem('triumphstrides_cart', JSON.stringify(items));
+  }, [items]);
+
+  useEffect(() => {
+    localStorage.setItem('triumphstrides_currency', currency.code);
+  }, [currency]);
+
+  useEffect(() => {
+    localStorage.setItem('triumphstrides_orderNote', orderNote);
+  }, [orderNote]);
+
+  const setOrderNote = useCallback((note: string) => {
+    setOrderNoteState(note);
+  }, []);
 
   const addItem = useCallback((productId: string, variantId: string, quantity = 1) => {
     setItems(prev => {
@@ -74,6 +98,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const clearCart = useCallback(() => {
     setItems([]);
     setOrderNote('');
+    localStorage.removeItem('triumphstrides_cart');
+    localStorage.removeItem('triumphstrides_orderNote');
   }, []);
 
   const getItemCount = useCallback(() => {
