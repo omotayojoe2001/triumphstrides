@@ -3,6 +3,8 @@ import { TopBar } from './TopBar';
 import { Header } from './Header';
 import { Footer } from './Footer';
 import { FloatingButtons } from '@/components/FloatingButtons';
+import { CurrencySelector } from '@/components/CurrencySelector';
+import { DiscountBanner } from '@/components/DiscountBanner';
 
 interface LayoutProps {
   children: ReactNode;
@@ -18,6 +20,8 @@ export function Layout({ children }: LayoutProps) {
       </main>
       <Footer />
       <FloatingButtons />
+      <CurrencySelector />
+      <DiscountBanner />
     </div>
   );
 }

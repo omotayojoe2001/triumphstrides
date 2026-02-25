@@ -37,13 +37,13 @@ export function HomePage() {
       <section className="relative bg-muted overflow-hidden">
         {/* Background Image with Overlay */}
         <div className="absolute inset-0">
-          <div className="grid grid-cols-4 h-full opacity-20">
+          <div className="grid grid-cols-4 h-full">
             <img src="/products/palmoil(small).jpg" alt="" className="w-full h-full object-cover" />
             <img src="/products/fufu.jpg" alt="" className="w-full h-full object-cover" />
             <img src="/products/ijebugarri.jpg" alt="" className="w-full h-full object-cover" />
             <img src="/products/plantainflour.jpg" alt="" className="w-full h-full object-cover" />
           </div>
-          <div className="absolute inset-0 bg-gradient-to-r from-background via-background/95 to-background/80" />
+          <div className="absolute inset-0 bg-gradient-to-r from-background/95 via-background/85 to-background/75" />
         </div>
         
         <div className="container-tight py-20 md:py-32 relative z-10">

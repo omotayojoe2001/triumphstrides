@@ -1,3 +1,4 @@
+import { Globe } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
 import { currencies } from '@/lib/data';
 import { Currency } from '@/lib/types';
@@ -13,17 +14,22 @@ export function CurrencySelector() {
   const { currency, setCurrency } = useCart();
 
   return (
-    <Select value={currency.code} onValueChange={(value) => setCurrency(value as Currency)}>
-      <SelectTrigger className="w-[90px] h-9 text-sm border-border">
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent>
-        {currencies.map((c) => (
-          <SelectItem key={c.code} value={c.code}>
-            {c.code} ({c.symbol})
-          </SelectItem>
-        ))}
-      </SelectContent>
-    </Select>
+    <div className="fixed bottom-24 right-6 z-40">
+      <div className="bg-background border-2 border-primary shadow-lg p-3 flex items-center gap-2">
+        <Globe className="h-4 w-4 text-primary" />
+        <Select value={currency.code} onValueChange={(value) => setCurrency(value as Currency)}>
+          <SelectTrigger className="w-28 h-8 border-none focus:ring-0">
+            <SelectValue />
+          </SelectTrigger>
+          <SelectContent>
+            {currencies.map((c) => (
+              <SelectItem key={c.code} value={c.code}>
+                {c.code} ({c.symbol})
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+    </div>
   );
 }

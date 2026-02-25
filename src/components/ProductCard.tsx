@@ -32,16 +32,25 @@ export function ProductCard({ product, className }: ProductCardProps) {
     <Link 
       to={`/product/${product.id}`}
       className={cn(
-        "group block bg-card border border-border hover:shadow-md transition-shadow",
+        "group block bg-card border border-border hover:shadow-md transition-all hover:scale-105 duration-300",
         className
       )}
     >
       <div className="aspect-square bg-muted relative overflow-hidden">
-        <img 
-          src={product.images[0]} 
-          alt={product.name}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
+        {product.images[0] && product.images[0] !== '/placeholder.svg' ? (
+          <img 
+            src={product.images[0]} 
+            alt={product.name}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center bg-muted">
+            <div className="text-center p-4">
+              <p className="text-sm text-muted-foreground mb-2">No image available</p>
+              <p className="text-xs text-muted-foreground">Click for details</p>
+            </div>
+          </div>
+        )}
         {!firstVariant?.inStock && (
           <div className="absolute inset-0 bg-foreground/50 flex items-center justify-center">
             <span className="bg-background px-3 py-1 text-sm font-medium">Out of Stock</span>

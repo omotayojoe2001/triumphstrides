@@ -35,10 +35,10 @@ export function ServiceCard({ service, className, onRequestService }: ServiceCar
 
   const content = (
     <div className={cn(
-      "bg-card border border-border p-6 h-full flex flex-col hover:shadow-md transition-shadow",
+      "bg-card border border-border p-6 h-full flex flex-col hover:shadow-lg hover:scale-105 transition-all duration-300",
       className
     )}>
-      <div className="h-12 w-12 bg-primary/10 flex items-center justify-center mb-4">
+      <div className="h-12 w-12 bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
         <Icon className="h-6 w-6 text-primary" />
       </div>
       

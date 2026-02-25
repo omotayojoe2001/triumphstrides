@@ -18,10 +18,18 @@ export function ServicesPage() {
   return (
     <div>
       {/* Header */}
-      <section className="bg-muted py-12 md:py-16">
-        <div className="container-tight">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h1>
-          <p className="text-muted-foreground max-w-2xl text-lg">
+      <section className="relative bg-foreground text-background py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1600&h=800&fit=crop" 
+            alt="Services"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/80 to-foreground/70" />
+        </div>
+        <div className="container-tight relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Our Services</h1>
+          <p className="text-background/90 max-w-2xl text-lg">
             Beyond quality African foods, Triumph Strides Store offers a range of trusted 
             services to support your family, events, and daily life.
           </p>
@@ -57,11 +65,12 @@ export function ServicesPage() {
                 <div className="aspect-video bg-background border border-border relative overflow-hidden">
                   <img 
                     src={
-                      service.id === 'event-catering' ? '/products/grindedcrayfish.jpg' :
-                      service.id === 'daycare' ? '/products/fufu.jpg' :
-                      service.id === 'ranch-service' ? '/products/plantainflour.jpg' :
-                      service.id === 'cleaning' ? '/products/organicwheatflour.jpg' :
-                      service.id === 'event-planning' ? '/products/driedzobo.jpg' :
+                      service.id === 'event-catering' ? 'https://images.unsplash.com/photo-1555244162-803834f70033?w=800&h=600&fit=crop' :
+                      service.id === 'daycare' ? 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800&h=600&fit=crop' :
+                      service.id === 'ranch-service' ? 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop' :
+                      service.id === 'cleaning' ? 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=600&fit=crop' :
+                      service.id === 'event-planning' ? 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop' :
+                      service.id === 'event-coverage' ? '/sophiaimagemain.jpeg' :
                       '/products/palmoil(small).jpg'
                     }
                     alt={service.title}

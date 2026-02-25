@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ShoppingCart, Menu, X } from 'lucide-react';
 import { useCart } from '@/contexts/CartContext';
-import { CurrencySelector } from '@/components/CurrencySelector';
 import { cn } from '@/lib/utils';
 
 const navLinks = [
@@ -51,8 +50,6 @@ export function Header() {
 
           {/* Right Section */}
           <div className="flex items-center gap-4">
-            <CurrencySelector />
-            
             <Link 
               to="/cart" 
               className="relative p-2 hover:bg-muted transition-colors"

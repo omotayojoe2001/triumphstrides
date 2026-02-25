@@ -49,10 +49,18 @@ export function ContactPage() {
   return (
     <div>
       {/* Header */}
-      <section className="bg-muted py-12 md:py-16">
-        <div className="container-tight">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Contact Us</h1>
-          <p className="text-muted-foreground max-w-2xl">
+      <section className="relative bg-foreground text-background py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0">
+          <img 
+            src="https://images.unsplash.com/photo-1577563908411-5077b6dc7624?w=1600&h=800&fit=crop" 
+            alt="Contact Us"
+            className="w-full h-full object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/90 via-foreground/80 to-foreground/70" />
+        </div>
+        <div className="container-tight relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Contact Us</h1>
+          <p className="text-background/90 max-w-2xl">
             Have a question, want to place an order, or need help with a service? 
             We're here to help.
           </p>

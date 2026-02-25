@@ -23,10 +23,19 @@ export function ShopPage() {
   return (
     <div>
       {/* Header */}
-      <section className="bg-muted py-12">
-        <div className="container-tight">
-          <h1 className="text-3xl md:text-4xl font-bold mb-4">Shop African Foods</h1>
-          <p className="text-muted-foreground max-w-2xl">
+      <section className="relative bg-foreground text-background py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="grid grid-cols-4 h-full">
+            <img src="/products/palmoil(small).jpg" alt="" className="w-full h-full object-cover" />
+            <img src="/products/fufu.jpg" alt="" className="w-full h-full object-cover" />
+            <img src="/products/grindedcrayfish.jpg" alt="" className="w-full h-full object-cover" />
+            <img src="/products/driedzobo.jpg" alt="" className="w-full h-full object-cover" />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/75 to-foreground/65" />
+        </div>
+        <div className="container-tight relative z-10">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Shop African Foods</h1>
+          <p className="text-background/90 max-w-2xl">
             Quality African ingredients delivered to your door in Calgary. 
             From flours and leaves to spices and oils.
           </p>

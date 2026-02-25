@@ -22,13 +22,20 @@ export function AboutPage() {
   return (
     <div>
       {/* Hero */}
-      <section className="bg-muted py-16 md:py-24">
-        <div className="container-tight">
+      <section className="relative bg-foreground text-background py-20 md:py-32 overflow-hidden">
+        <div className="absolute inset-0">
+          <div className="grid grid-cols-2 h-full">
+            <img src="/products/palmoil(small).jpg" alt="" className="w-full h-full object-cover" />
+            <img src="/sophiaimagemain.jpeg" alt="" className="w-full h-full object-cover" />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/85 via-foreground/75 to-foreground/65" />
+        </div>
+        <div className="container-tight relative z-10">
           <div className="max-w-3xl">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
               About Triumph Strides Store
             </h1>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-background/90">
               Bringing the best of African foods and trusted services to Calgary, Alberta. 
               We're more than a store—we're your community partner.
             </p>
