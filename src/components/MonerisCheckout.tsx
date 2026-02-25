@@ -15,6 +15,7 @@ declare global {
 
 export function MonerisCheckout({ amount, onSuccess, onError, onCancel }: MonerisCheckoutProps) {
   const checkoutRef = useRef<HTMLDivElement>(null);
+  const MONERIS_CHECKOUT_ID = 'chktESN5E07935'; // Public - safe to expose
 
   useEffect(() => {
     const script = document.createElement('script');
@@ -28,7 +29,7 @@ export function MonerisCheckout({ amount, onSuccess, onError, onCancel }: Moneri
         checkout.setMode('prod');
         checkout.setCheckoutDiv('monerisCheckout');
         
-        checkout.startCheckout('chktESN5E07935');
+        checkout.startCheckout(MONERIS_CHECKOUT_ID);
         
         checkout.setCallback('page_loaded', () => {
           console.log('Moneris checkout loaded');
