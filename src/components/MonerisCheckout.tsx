@@ -18,14 +18,14 @@ export function MonerisCheckout({ amount, onSuccess, onError, onCancel }: Moneri
 
   useEffect(() => {
     const script = document.createElement('script');
-    script.src = 'https://gatewayt.moneris.com/chktv2/js/chkt_v2.00.js';
+    script.src = 'https://gateway.moneris.com/chktv2/js/chkt_v2.00.js';
     script.async = true;
     
     script.onload = () => {
       if (window.monerisCheckout && checkoutRef.current) {
         const checkout = new window.monerisCheckout();
         
-        checkout.setMode('qa');
+        checkout.setMode('prod');
         checkout.setCheckoutDiv('monerisCheckout');
         
         checkout.startCheckout('chktESN5E07935');
