@@ -36,15 +36,21 @@ export function MonerisCheckout({ amount, onSuccess, onError, onCancel }: Moneri
         });
         
         checkout.setCallback('payment_receipt', (response: any) => {
-          onSuccess(response);
-        });
-        
-        checkout.setCallback('payment_error', (error: any) => {
-          onError(error);
+          console.log('Payment response:', response);
+          if (response.response_code && response.response_code < 50) {
+            onSuccess(response);
+          } else {
+            onError(response);
+          }
         });
         
         checkout.setCallback('cancel_transaction', () => {
           onCancel();
+        });
+        
+        checkout.setCallback('error_event', (error: any) => {
+          console.error('Moneris error:', error);
+          onError(error);
         });
       }
     };
