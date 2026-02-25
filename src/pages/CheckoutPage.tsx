@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { MonerisCheckout } from '@/components/MonerisCheckout';
 import { useCart } from '@/contexts/CartContext';
 import { products } from '@/lib/data';
 import { useToast } from '@/hooks/use-toast';
@@ -62,19 +63,31 @@ export function CheckoutPage() {
     setStep('review');
   };
 
-  const handlePayment = () => {
-    // Stripe integration placeholder
-    toast({
-      title: "Payment Processing",
-      description: "Stripe integration pending. Order submitted for manual processing.",
-    });
-    
-    // Generate order number
+  const handlePaymentSuccess = (response: any) => {
     const orderNumber = `TS-${Date.now().toString(36).toUpperCase()}`;
     
-    // Clear cart and redirect to confirmation
+    toast({
+      title: "Payment Successful!",
+      description: `Order #${orderNumber} confirmed`,
+    });
+    
     clearCart();
     navigate(`/order-confirmation?order=${orderNumber}`);
+  };
+
+  const handlePaymentError = (error: any) => {
+    toast({
+      title: "Payment Failed",
+      description: "Please try again or contact support",
+      variant: "destructive",
+    });
+  };
+
+  const handlePaymentCancel = () => {
+    toast({
+      title: "Payment Cancelled",
+      description: "You can try again when ready",
+    });
   };
 
   return (
@@ -276,33 +289,17 @@ export function CheckoutPage() {
                 <div className="border border-border p-6 space-y-4">
                   <h2 className="text-xl font-semibold">Payment</h2>
                   
-                  <div className="p-4 bg-muted text-center">
-                    <p className="text-muted-foreground mb-2">Stripe Payment Integration</p>
-                    <p className="text-sm text-muted-foreground">
-                      Card payment will be available once Stripe is configured.
-                    </p>
-                  </div>
-
-                  <div className="p-4 border border-border">
-                    <p className="font-medium mb-2">Alternative Payment Methods:</p>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• e-Transfer to: payments@triumphstridesstore.com</li>
-                      <li>• Pay in person at pickup</li>
-                    </ul>
-                  </div>
+                  <MonerisCheckout
+                    amount={total}
+                    onSuccess={handlePaymentSuccess}
+                    onError={handlePaymentError}
+                    onCancel={handlePaymentCancel}
+                  />
                 </div>
 
-                <div className="flex gap-4">
-                  <Button variant="outline" onClick={() => setStep('review')} className="flex-1">
-                    Back
-                  </Button>
-                  <Button 
-                    onClick={handlePayment}
-                    className="flex-1 bg-primary text-primary-foreground hover:bg-primary/90"
-                  >
-                    Place Order
-                  </Button>
-                </div>
+                <Button variant="outline" onClick={() => setStep('review')} className="w-full">
+                  Back to Review
+                </Button>
               </div>
             )}
           </div>
