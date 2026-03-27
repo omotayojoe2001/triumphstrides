@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { ServiceCard } from '@/components/ServiceCard';
 import { ServiceRequestModal } from '@/components/ServiceRequestModal';
 import { services } from '@/lib/data';
+import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 
 export function ServicesPage() {
   const [serviceModalOpen, setServiceModalOpen] = useState(false);
@@ -40,12 +41,8 @@ export function ServicesPage() {
       <section className="section-padding">
         <div className="container-tight">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {services.map(service => (
-              <ServiceCard 
-                key={service.id} 
-                service={service} 
-                onRequestService={handleRequestService}
-              />
+            {services.map((service, i) => (
+              <ServiceCardReveal key={service.id} service={service} index={i} onRequestService={handleRequestService} />
             ))}
           </div>
         </div>
@@ -55,51 +52,7 @@ export function ServicesPage() {
       <section className="py-16 bg-muted">
         <div className="container-tight space-y-16">
           {serviceDetails.map((service, index) => (
-            <div 
-              key={service.id}
-              className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${
-                index % 2 === 1 ? 'lg:flex-row-reverse' : ''
-              }`}
-            >
-              <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                <div className="aspect-video bg-background border border-border rounded-xl relative overflow-hidden">
-                  <img 
-                    src={service.image}
-                    alt={service.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
-                </div>
-              </div>
-              <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                <h2 className="text-2xl font-bold mb-4">{service.title}</h2>
-                <p className="text-muted-foreground mb-4">{service.description}</p>
-                
-                <div className="mb-4">
-                  <h4 className="font-semibold mb-2">Who it's for:</h4>
-                  <p className="text-sm text-muted-foreground">{service.whoFor}</p>
-                </div>
-
-                <div className="mb-6">
-                  <h4 className="font-semibold mb-2">What's included:</h4>
-                  <ul className="space-y-1">
-                    {service.includes.map((item, i) => (
-                      <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <button 
-                  onClick={() => handleRequestService(service.id)}
-                  className="bg-primary text-primary-foreground rounded-lg px-6 py-3 font-medium hover:bg-primary/90 transition-colors"
-                >
-                  {service.cta}
-                </button>
-              </div>
-            </div>
+            <ServiceDetailReveal key={service.id} service={service} index={index} onRequest={handleRequestService} />
           ))}
         </div>
       </section>
@@ -109,6 +62,53 @@ export function ServicesPage() {
         onClose={() => setServiceModalOpen(false)}
         preselectedService={selectedService}
       />
+    </div>
+  );
+}
+
+function ServiceCardReveal({ service, index, onRequestService }: { service: any; index: number; onRequestService: (id: string) => void }) {
+  const dir = index % 3 === 0 ? 'left' as const : index % 3 === 1 ? 'up' as const : 'right' as const;
+  const ref = useScrollReveal(dir, index * 80);
+  return (
+    <div ref={ref}>
+      <ServiceCard service={service} onRequestService={onRequestService} />
+    </div>
+  );
+}
+
+function ServiceDetailReveal({ service, index, onRequest }: { service: any; index: number; onRequest: (id: string) => void }) {
+  const imgRef = useScrollReveal(index % 2 === 0 ? 'left' : 'right');
+  const textRef = useScrollReveal(index % 2 === 0 ? 'right' : 'left', 200);
+  return (
+    <div className={`grid grid-cols-1 lg:grid-cols-2 gap-8 items-center ${index % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
+      <div ref={imgRef} className={index % 2 === 1 ? 'lg:order-2' : ''}>
+        <div className="aspect-video bg-background border border-border rounded-xl relative overflow-hidden">
+          <img src={service.image} alt={service.title} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
+        </div>
+      </div>
+      <div ref={textRef} className={index % 2 === 1 ? 'lg:order-1' : ''}>
+        <h2 className="text-2xl font-bold mb-4">{service.title}</h2>
+        <p className="text-muted-foreground mb-4">{service.description}</p>
+        <div className="mb-4">
+          <h4 className="font-semibold mb-2">Who it's for:</h4>
+          <p className="text-sm text-muted-foreground">{service.whoFor}</p>
+        </div>
+        <div className="mb-6">
+          <h4 className="font-semibold mb-2">What's included:</h4>
+          <ul className="space-y-1">
+            {service.includes.map((item: string, i: number) => (
+              <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
+                {item}
+              </li>
+            ))}
+          </ul>
+        </div>
+        <button onClick={() => onRequest(service.id)} className="bg-primary text-primary-foreground rounded-lg px-6 py-3 font-medium hover:bg-primary/90 transition-colors">
+          {service.cta}
+        </button>
+      </div>
     </div>
   );
 }

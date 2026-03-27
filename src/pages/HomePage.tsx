@@ -6,6 +6,7 @@ import { ProductCard } from '@/components/ProductCard';
 import { ServiceCard } from '@/components/ServiceCard';
 import { ServiceRequestModal } from '@/components/ServiceRequestModal';
 import { products, services, faqs, sophiaTracks } from '@/lib/data';
+import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 
 const testimonials = [
   { name: 'Amara O.', text: 'The quality of the palm oil and gari is exceptional. Feels like I\'m back home!', stars: 5 },
@@ -24,6 +25,21 @@ export function HomePage() {
 
   const featuredProducts = products.filter(p => p.featured).slice(0, 6);
   const displayedServices = services.slice(0, 6);
+
+  // Scroll reveal refs
+  const heroRef = useScrollReveal('up');
+  const catHeaderRef = useScrollReveal('up');
+  const catGridRef = useScrollReveal('left', 150);
+  const prodHeaderRef = useScrollReveal('up');
+  const prodGridRef = useScrollReveal('right', 150);
+  const svcHeaderRef = useScrollReveal('up');
+  const svcRow1Ref = useScrollReveal('left', 100);
+  const svcRow2Ref = useScrollReveal('right', 200);
+  const sophiaTextRef = useScrollReveal('left');
+  const sophiaImgRef = useScrollReveal('right', 200);
+  const testimonialRef = useScrollReveal('up');
+  const faqHeaderRef = useScrollReveal('up');
+  const faqListRef = useScrollReveal('up', 150);
 
   const nextTestimonial = useCallback(() => {
     setCurrentTestimonial(prev => (prev + 1) % testimonials.length);
@@ -68,7 +84,7 @@ export function HomePage() {
         </div>
         
         <div className="container-tight py-20 md:py-32 relative z-10">
-          <div className="max-w-3xl">
+          <div ref={heroRef} className="max-w-3xl">
             <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium mb-6">
               <Globe className="h-4 w-4" /> Proudly serving Calgary, Alberta
             </span>
@@ -89,9 +105,7 @@ export function HomePage() {
                 </Link>
               </Button>
               <Button asChild variant="outline" className="border-2 border-foreground h-12 px-8 text-base hover:bg-foreground hover:text-background">
-                <Link to="/services">
-                  Explore Services
-                </Link>
+                <Link to="/services">Explore Services</Link>
               </Button>
             </div>
 
@@ -113,14 +127,13 @@ export function HomePage() {
       {/* Category Cards — Bento Grid */}
       <section className="section-padding bg-background">
         <div className="container-tight">
-          <div className="text-center mb-12">
+          <div ref={catHeaderRef} className="text-center mb-12">
             <span className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-sm font-medium mb-4">
               <Sparkles className="h-4 w-4" /> Everything you need
             </span>
             <h2 className="text-2xl md:text-3xl font-bold">What We Offer</h2>
           </div>
-          {/* Bento layout: 2 tall + 2 small on left, 1 wide + 2 small on right */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[180px]">
+          <div ref={catGridRef} className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[140px] md:auto-rows-[180px]">
             {categories.map((category, index) => {
               const spanClass = 
                 index === 0 ? 'md:col-span-2 md:row-span-2' :
@@ -153,21 +166,18 @@ export function HomePage() {
       {/* Featured Products — Horizontal Scroll */}
       <section className="section-padding bg-gradient-to-b from-muted to-background">
         <div className="container-tight">
-          <div className="flex items-center justify-between mb-8">
+          <div ref={prodHeaderRef} className="flex items-center justify-between mb-8">
             <div>
               <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-3 py-1 rounded-full text-xs font-medium mb-2">
                 <Flame className="h-3 w-3" /> Popular picks
               </span>
               <h2 className="text-2xl md:text-3xl font-bold">Featured Products</h2>
             </div>
-            <Link 
-              to="/shop" 
-              className="text-sm font-medium text-primary hover:underline flex items-center gap-1"
-            >
+            <Link to="/shop" className="text-sm font-medium text-primary hover:underline flex items-center gap-1">
               View All <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
-          <div className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 lg:grid-cols-4 md:overflow-visible">
+          <div ref={prodGridRef} className="flex gap-5 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide -mx-4 px-4 md:mx-0 md:px-0 md:grid md:grid-cols-3 lg:grid-cols-4 md:overflow-visible">
             {featuredProducts.map(product => (
               <div key={product.id} className="min-w-[260px] snap-start md:min-w-0">
                 <ProductCard product={product} />
@@ -180,7 +190,7 @@ export function HomePage() {
       {/* Services — Alternating large/small layout */}
       <section className="section-padding bg-background overflow-hidden">
         <div className="container-tight">
-          <div className="text-center mb-12">
+          <div ref={svcHeaderRef} className="text-center mb-12">
             <span className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-sm font-medium mb-4">
               <Handshake className="h-4 w-4" /> More than a store
             </span>
@@ -190,32 +200,17 @@ export function HomePage() {
               your family and events.
             </p>
           </div>
-          {/* First row: 1 large + 2 stacked */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-            <ServiceCard 
-              service={displayedServices[0]} 
-              onRequestService={handleRequestService}
-              className="h-80"
-            />
+          <div ref={svcRow1Ref} className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+            <ServiceCard service={displayedServices[0]} onRequestService={handleRequestService} className="h-80" />
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {displayedServices.slice(1, 3).map(service => (
-                <ServiceCard 
-                  key={service.id} 
-                  service={service} 
-                  onRequestService={handleRequestService}
-                  className="h-[calc(10rem-0.5rem)] md:h-full"
-                />
+                <ServiceCard key={service.id} service={service} onRequestService={handleRequestService} className="h-[calc(10rem-0.5rem)] md:h-full" />
               ))}
             </div>
           </div>
-          {/* Second row: 3 equal */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div ref={svcRow2Ref} className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {displayedServices.slice(3, 6).map(service => (
-              <ServiceCard 
-                key={service.id} 
-                service={service} 
-                onRequestService={handleRequestService}
-              />
+              <ServiceCard key={service.id} service={service} onRequestService={handleRequestService} />
             ))}
           </div>
           <div className="text-center mt-8">
@@ -230,7 +225,7 @@ export function HomePage() {
       <section className="section-padding bg-gradient-to-br from-foreground via-foreground to-primary/30 text-background">
         <div className="container-tight">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
+            <div ref={sophiaTextRef}>
               <span className="text-sm uppercase tracking-wider text-background/60 mb-4 block">
                 Live Entertainment
               </span>
@@ -262,12 +257,8 @@ export function HomePage() {
                 </Link>
               </Button>
             </div>
-            <div className="aspect-square bg-background/10 rounded-xl relative overflow-hidden">
-              <img 
-                src="/sophiaimagemain.jpeg" 
-                alt="Sophia Music"
-                className="w-full h-full object-cover"
-              />
+            <div ref={sophiaImgRef} className="aspect-square bg-background/10 rounded-xl relative overflow-hidden">
+              <img src="/sophiaimagemain.jpeg" alt="Sophia Music" className="w-full h-full object-cover" />
               <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent" />
             </div>
           </div>
@@ -277,7 +268,7 @@ export function HomePage() {
       {/* Testimonials — Sliding Carousel */}
       <section className="section-padding bg-gradient-to-b from-muted to-background overflow-hidden">
         <div className="container-tight">
-          <div className="text-center mb-12">
+          <div ref={testimonialRef} className="text-center mb-12">
             <span className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-sm font-medium mb-4">
               <Heart className="h-4 w-4" /> Loved by our community
             </span>
@@ -285,7 +276,6 @@ export function HomePage() {
           </div>
 
           <div className="relative max-w-4xl mx-auto">
-            {/* Carousel */}
             <div className="overflow-hidden">
               <div 
                 className="flex transition-transform duration-500 ease-in-out"
@@ -314,21 +304,13 @@ export function HomePage() {
               </div>
             </div>
 
-            {/* Navigation */}
-            <button 
-              onClick={prevTestimonial}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 h-10 w-10 rounded-full bg-card border border-border shadow-md flex items-center justify-center hover:bg-muted transition-colors"
-            >
+            <button onClick={prevTestimonial} className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 h-10 w-10 rounded-full bg-card border border-border shadow-md flex items-center justify-center hover:bg-muted transition-colors">
               <ChevronLeft className="h-5 w-5" />
             </button>
-            <button 
-              onClick={nextTestimonial}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 h-10 w-10 rounded-full bg-card border border-border shadow-md flex items-center justify-center hover:bg-muted transition-colors"
-            >
+            <button onClick={nextTestimonial} className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 h-10 w-10 rounded-full bg-card border border-border shadow-md flex items-center justify-center hover:bg-muted transition-colors">
               <ChevronRight className="h-5 w-5" />
             </button>
 
-            {/* Dots */}
             <div className="flex justify-center gap-2 mt-6">
               {testimonials.map((_, index) => (
                 <button
@@ -347,13 +329,13 @@ export function HomePage() {
       {/* FAQ */}
       <section className="section-padding bg-background">
         <div className="container-tight max-w-3xl">
-          <div className="text-center mb-12">
+          <div ref={faqHeaderRef} className="text-center mb-12">
             <span className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-1.5 rounded-full text-sm font-medium mb-4">
               <HelpCircle className="h-4 w-4" /> Got questions?
             </span>
             <h2 className="text-2xl md:text-3xl font-bold">Frequently Asked Questions</h2>
           </div>
-          <div className="space-y-4">
+          <div ref={faqListRef} className="space-y-4">
             {faqs.map((faq, index) => (
               <div key={index} className="border border-border rounded-xl">
                 <button
@@ -361,16 +343,10 @@ export function HomePage() {
                   className="w-full p-4 flex items-center justify-between text-left hover:bg-muted transition-colors rounded-xl"
                 >
                   <span className="font-medium">{faq.question}</span>
-                  {openFaq === index ? (
-                    <ChevronUp className="h-5 w-5 shrink-0" />
-                  ) : (
-                    <ChevronDown className="h-5 w-5 shrink-0" />
-                  )}
+                  {openFaq === index ? <ChevronUp className="h-5 w-5 shrink-0" /> : <ChevronDown className="h-5 w-5 shrink-0" />}
                 </button>
                 {openFaq === index && (
-                  <div className="px-4 pb-4 text-muted-foreground">
-                    {faq.answer}
-                  </div>
+                  <div className="px-4 pb-4 text-muted-foreground">{faq.answer}</div>
                 )}
               </div>
             ))}

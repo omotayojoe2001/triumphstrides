@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/select';
 import { sophiaTracks, sophiaShows } from '@/lib/data';
 import { useToast } from '@/hooks/use-toast';
+import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 
 export function SophiaMusicPage() {
   const [playingTrack, setPlayingTrack] = useState<string | null>(null);
@@ -83,10 +84,10 @@ export function SophiaMusicPage() {
                 weddings, corporate events, parties, and cultural celebrations.
               </p>
               <div className="flex gap-4">
-                <a href="#booking" className="bg-primary text-primary-foreground px-6 py-3 font-medium hover:bg-primary/90 transition-colors">
+                <a href="#booking" className="bg-primary text-primary-foreground rounded-lg px-6 py-3 font-medium hover:bg-primary/90 transition-colors">
                   Invite Sophia
                 </a>
-                <a href="#music" className="border-2 border-background text-background px-6 py-3 font-medium hover:bg-background hover:text-foreground transition-colors">
+                <a href="#music" className="border-2 border-background text-background rounded-lg px-6 py-3 font-medium hover:bg-background hover:text-foreground transition-colors">
                   Listen Now
                 </a>
               </div>
@@ -107,36 +108,8 @@ export function SophiaMusicPage() {
         <div className="container-tight">
           <h2 className="text-2xl md:text-3xl font-bold mb-8">Video Library</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            <div>
-              <div className="aspect-video bg-muted rounded-xl mb-3">
-                <iframe
-                  className="rounded-xl"
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/5pBwHRNWKag"
-                  title="Happy"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-              <h3 className="font-medium">Happy</h3>
-              <p className="text-sm text-muted-foreground">3:12</p>
-            </div>
-            <div>
-              <div className="aspect-video bg-muted rounded-xl mb-3">
-                <iframe
-                  className="rounded-xl"
-                  width="100%"
-                  height="100%"
-                  src="https://www.youtube.com/embed/iUs_xWSEd4k"
-                  title="How Will I Know?"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
-              </div>
-              <h3 className="font-medium">How Will I Know?</h3>
-              <p className="text-sm text-muted-foreground">3:11</p>
-            </div>
+            <VideoReveal src="https://www.youtube.com/embed/5pBwHRNWKag" title="Happy" duration="3:12" direction="left" />
+            <VideoReveal src="https://www.youtube.com/embed/iUs_xWSEd4k" title="How Will I Know?" duration="3:11" direction="right" />
           </div>
         </div>
       </section>
@@ -144,13 +117,7 @@ export function SophiaMusicPage() {
       {/* Booking Form */}
       <section id="booking" className="section-padding">
         <div className="container-tight max-w-3xl">
-          <div className="text-center mb-12">
-            <h2 className="text-2xl md:text-3xl font-bold mb-4">Invite Sophia to Your Event</h2>
-            <p className="text-muted-foreground">
-              Fill out the form below and we'll get back to you within 48 hours 
-              with availability and pricing.
-            </p>
-          </div>
+          <BookingHeader />
 
           <form onSubmit={handleSubmitBooking} className="space-y-6 border border-border rounded-xl p-6 md:p-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -332,6 +299,31 @@ export function SophiaMusicPage() {
           </div>
         </div>
       </section>
+    </div>
+  );
+}
+
+function VideoReveal({ src, title, duration, direction }: { src: string; title: string; duration: string; direction: 'left' | 'right' }) {
+  const ref = useScrollReveal(direction);
+  return (
+    <div ref={ref}>
+      <div className="aspect-video bg-muted rounded-xl mb-3">
+        <iframe className="rounded-xl" width="100%" height="100%" src={src} title={title} allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+      </div>
+      <h3 className="font-medium">{title}</h3>
+      <p className="text-sm text-muted-foreground">{duration}</p>
+    </div>
+  );
+}
+
+function BookingHeader() {
+  const ref = useScrollReveal('up');
+  return (
+    <div ref={ref} className="text-center mb-12">
+      <h2 className="text-2xl md:text-3xl font-bold mb-4">Invite Sophia to Your Event</h2>
+      <p className="text-muted-foreground">
+        Fill out the form below and we'll get back to you within 48 hours with availability and pricing.
+      </p>
     </div>
   );
 }

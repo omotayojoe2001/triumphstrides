@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ArrowRight, Check, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useScrollReveal } from '@/hooks/use-scroll-reveal';
 
 export function AboutPage() {
   const values = [
@@ -47,36 +48,8 @@ export function AboutPage() {
       <section className="section-padding">
         <div className="container-tight">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">Our Story</h2>
-              <div className="space-y-4 text-muted-foreground">
-                <p>
-                  Triumph Strides Store was born from a simple mission: to bring the authentic 
-                  flavors and warmth of African culture to Calgary. What started as a passion 
-                  for sharing quality African foods has grown into a multi-service brand that 
-                  supports families and events across the city.
-                </p>
-                <p>
-                  Based in Calgary, Alberta, we understand the needs of our diverse community. 
-                  Whether you're looking for the perfect palm oil for your jollof rice, 
-                  reliable childcare, professional event catering, or live music for your 
-                  celebration—we've got you covered.
-                </p>
-                <p>
-                  We believe in quality, trust, and community. Every product we sell, 
-                  every service we provide, reflects our commitment to excellence and 
-                  our love for the people we serve.
-                </p>
-              </div>
-            </div>
-            <div className="aspect-square bg-muted rounded-xl relative overflow-hidden">
-              <div className="grid grid-cols-2 grid-rows-2 h-full gap-2 p-4">
-                <img src="/sophiaimagemain.jpeg" alt="" className="w-full h-full object-cover rounded-lg" />
-                <img src="/products/palmoil(small).jpg" alt="" className="w-full h-full object-cover rounded-lg" />
-                <img src="/products/driedzobo.jpg" alt="" className="w-full h-full object-cover rounded-lg" />
-                <img src="/sophiaimagesecondary.jpeg" alt="" className="w-full h-full object-cover rounded-lg" />
-              </div>
-            </div>
+            <StoryText />
+            <StoryImages />
           </div>
         </div>
       </section>
@@ -84,20 +57,8 @@ export function AboutPage() {
       {/* Our Values */}
       <section className="section-padding bg-muted">
         <div className="container-tight">
-          <div className="text-center mb-12">
-            <span className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-sm font-medium mb-4">
-              <Target className="h-4 w-4" /> What drives us
-            </span>
-            <h2 className="text-2xl md:text-3xl font-bold">Our Values</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => (
-              <div key={index} className="bg-background rounded-xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow">
-                <h3 className="font-semibold mb-2">{value.title}</h3>
-                <p className="text-sm text-muted-foreground">{value.description}</p>
-              </div>
-            ))}
-          </div>
+          <ValuesHeader />
+          <ValuesGrid values={values} />
         </div>
       </section>
 
@@ -105,27 +66,8 @@ export function AboutPage() {
       <section className="section-padding">
         <div className="container-tight">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 aspect-square bg-muted rounded-xl relative overflow-hidden">
-              <img 
-                src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=800&fit=crop" 
-                alt="Why Choose Us"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-transparent" />
-            </div>
-            <div className="order-1 lg:order-2">
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">Why Choose Us</h2>
-              <ul className="space-y-3">
-                {whyChooseUs.map((item, index) => (
-                  <li key={index} className="flex items-start gap-3">
-                    <div className="h-5 w-5 bg-primary rounded-md flex items-center justify-center shrink-0 mt-0.5">
-                      <Check className="h-3 w-3 text-primary-foreground" />
-                    </div>
-                    <span className="text-muted-foreground">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+            <WhyImage />
+            <WhyList items={whyChooseUs} />
           </div>
         </div>
       </section>
@@ -134,32 +76,8 @@ export function AboutPage() {
       <section className="section-padding bg-foreground text-background">
         <div className="container-tight">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <span className="text-sm uppercase tracking-wider text-background/60 mb-4 block">
-                Meet Our Artist
-              </span>
-              <h2 className="text-2xl md:text-3xl font-bold mb-6">Sophia Music</h2>
-              <p className="text-background/80 mb-6">
-                Sophia is our in-house musical talent, bringing the soulful sounds of 
-                Africa to events across Calgary and beyond. With a passion for Afrobeat, 
-                Gospel, and contemporary African music, she creates unforgettable moments 
-                at weddings, parties, corporate events, and cultural celebrations.
-              </p>
-              <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
-                <Link to="/sophia-music">
-                  Learn More About Sophia
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-            <div className="aspect-square bg-background/10 rounded-xl relative overflow-hidden">
-              <img 
-                src="/sophiaimagesecondary.jpeg" 
-                alt="Sophia Music"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
-            </div>
+            <SophiaText />
+            <SophiaImage />
           </div>
         </div>
       </section>
@@ -181,6 +99,118 @@ export function AboutPage() {
           </div>
         </div>
       </section>
+    </div>
+  );
+}
+
+function StoryText() {
+  const ref = useScrollReveal('left');
+  return (
+    <div ref={ref}>
+      <h2 className="text-2xl md:text-3xl font-bold mb-6">Our Story</h2>
+      <div className="space-y-4 text-muted-foreground">
+        <p>Triumph Strides Store was born from a simple mission: to bring the authentic flavors and warmth of African culture to Calgary. What started as a passion for sharing quality African foods has grown into a multi-service brand that supports families and events across the city.</p>
+        <p>Based in Calgary, Alberta, we understand the needs of our diverse community. Whether you're looking for the perfect palm oil for your jollof rice, reliable childcare, professional event catering, or live music for your celebration—we've got you covered.</p>
+        <p>We believe in quality, trust, and community. Every product we sell, every service we provide, reflects our commitment to excellence and our love for the people we serve.</p>
+      </div>
+    </div>
+  );
+}
+
+function StoryImages() {
+  const ref = useScrollReveal('right', 200);
+  return (
+    <div ref={ref} className="aspect-square bg-muted rounded-xl relative overflow-hidden">
+      <div className="grid grid-cols-2 grid-rows-2 h-full gap-2 p-4">
+        <img src="/sophiaimagemain.jpeg" alt="" className="w-full h-full object-cover rounded-lg" />
+        <img src="/products/palmoil(small).jpg" alt="" className="w-full h-full object-cover rounded-lg" />
+        <img src="/products/driedzobo.jpg" alt="" className="w-full h-full object-cover rounded-lg" />
+        <img src="/sophiaimagesecondary.jpeg" alt="" className="w-full h-full object-cover rounded-lg" />
+      </div>
+    </div>
+  );
+}
+
+function ValuesHeader() {
+  const ref = useScrollReveal('up');
+  return (
+    <div ref={ref} className="text-center mb-12">
+      <span className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-sm font-medium mb-4">
+        <Target className="h-4 w-4" /> What drives us
+      </span>
+      <h2 className="text-2xl md:text-3xl font-bold">Our Values</h2>
+    </div>
+  );
+}
+
+function ValuesGrid({ values }: { values: { title: string; description: string }[] }) {
+  const ref = useScrollReveal('up', 150);
+  return (
+    <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      {values.map((value, index) => (
+        <div key={index} className="bg-background rounded-xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow">
+          <h3 className="font-semibold mb-2">{value.title}</h3>
+          <p className="text-sm text-muted-foreground">{value.description}</p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function WhyImage() {
+  const ref = useScrollReveal('left');
+  return (
+    <div ref={ref} className="order-2 lg:order-1 aspect-square bg-muted rounded-xl relative overflow-hidden">
+      <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=800&fit=crop" alt="Why Choose Us" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-transparent" />
+    </div>
+  );
+}
+
+function WhyList({ items }: { items: string[] }) {
+  const ref = useScrollReveal('right', 200);
+  return (
+    <div ref={ref} className="order-1 lg:order-2">
+      <h2 className="text-2xl md:text-3xl font-bold mb-6">Why Choose Us</h2>
+      <ul className="space-y-3">
+        {items.map((item, index) => (
+          <li key={index} className="flex items-start gap-3">
+            <div className="h-5 w-5 bg-primary rounded-md flex items-center justify-center shrink-0 mt-0.5">
+              <Check className="h-3 w-3 text-primary-foreground" />
+            </div>
+            <span className="text-muted-foreground">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function SophiaText() {
+  const ref = useScrollReveal('left');
+  return (
+    <div ref={ref}>
+      <span className="text-sm uppercase tracking-wider text-background/60 mb-4 block">Meet Our Artist</span>
+      <h2 className="text-2xl md:text-3xl font-bold mb-6">Sophia Music</h2>
+      <p className="text-background/80 mb-6">
+        Sophia is our in-house musical talent, bringing the soulful sounds of Africa to events across Calgary and beyond. With a passion for Afrobeat, Gospel, and contemporary African music, she creates unforgettable moments at weddings, parties, corporate events, and cultural celebrations.
+      </p>
+      <Button asChild className="bg-primary text-primary-foreground hover:bg-primary/90">
+        <Link to="/sophia-music">
+          Learn More About Sophia
+          <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
+    </div>
+  );
+}
+
+function SophiaImage() {
+  const ref = useScrollReveal('right', 200);
+  return (
+    <div ref={ref} className="aspect-square bg-background/10 rounded-xl relative overflow-hidden">
+      <img src="/sophiaimagesecondary.jpeg" alt="Sophia Music" className="w-full h-full object-cover" />
+      <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
     </div>
   );
 }
