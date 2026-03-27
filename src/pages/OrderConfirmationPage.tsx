@@ -1,5 +1,5 @@
 import { Link, useSearchParams } from 'react-router-dom';
-import { CheckCircle, ArrowRight } from 'lucide-react';
+import { CheckCircle, ArrowRight, PartyPopper } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function OrderConfirmationPage() {
@@ -9,22 +9,24 @@ export function OrderConfirmationPage() {
   return (
     <div className="container-tight py-16 text-center">
       <div className="max-w-lg mx-auto">
-        <div className="h-20 w-20 bg-primary/10 flex items-center justify-center mx-auto mb-6">
+        <div className="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6 shadow-md">
           <CheckCircle className="h-10 w-10 text-primary" />
         </div>
         
-        <h1 className="text-3xl font-bold mb-4">Order Confirmed!</h1>
+        <h1 className="text-3xl font-bold mb-4 flex items-center justify-center gap-2">
+          <PartyPopper className="h-8 w-8 text-accent" /> Order Confirmed!
+        </h1>
         
         <p className="text-muted-foreground mb-2">
           Thank you for your order. We've received your request and will process it shortly.
         </p>
         
-        <div className="bg-muted p-4 my-6">
+        <div className="bg-muted rounded-xl p-4 my-6">
           <p className="text-sm text-muted-foreground">Order Number</p>
           <p className="text-xl font-bold">{orderNumber}</p>
         </div>
 
-        <div className="text-left bg-muted p-6 mb-8">
+        <div className="text-left bg-muted rounded-xl p-6 mb-8">
           <h3 className="font-semibold mb-3">Next Steps:</h3>
           <ul className="space-y-2 text-sm text-muted-foreground">
             <li>• You'll receive an email confirmation shortly</li>

@@ -91,11 +91,11 @@ export function SophiaMusicPage() {
                 </a>
               </div>
             </div>
-            <div className="aspect-square bg-background/10">
+            <div className="aspect-square bg-background/10 rounded-xl">
               <img 
                 src="/sophiaimagemain.jpeg" 
                 alt="Sophia Music"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-xl"
               />
             </div>
           </div>
@@ -108,8 +108,9 @@ export function SophiaMusicPage() {
           <h2 className="text-2xl md:text-3xl font-bold mb-8">Video Library</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
-              <div className="aspect-video bg-muted mb-3">
+              <div className="aspect-video bg-muted rounded-xl mb-3">
                 <iframe
+                  className="rounded-xl"
                   width="100%"
                   height="100%"
                   src="https://www.youtube.com/embed/5pBwHRNWKag"
@@ -122,8 +123,9 @@ export function SophiaMusicPage() {
               <p className="text-sm text-muted-foreground">3:12</p>
             </div>
             <div>
-              <div className="aspect-video bg-muted mb-3">
+              <div className="aspect-video bg-muted rounded-xl mb-3">
                 <iframe
+                  className="rounded-xl"
                   width="100%"
                   height="100%"
                   src="https://www.youtube.com/embed/iUs_xWSEd4k"
@@ -150,7 +152,7 @@ export function SophiaMusicPage() {
             </p>
           </div>
 
-          <form onSubmit={handleSubmitBooking} className="space-y-6 border border-border p-6 md:p-8">
+          <form onSubmit={handleSubmitBooking} className="space-y-6 border border-border rounded-xl p-6 md:p-8">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="eventType">Event Type *</Label>
@@ -307,7 +309,7 @@ export function SophiaMusicPage() {
               href="https://instagram.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-3 bg-foreground text-background hover:bg-foreground/80 transition-colors"
+              className="p-3 bg-foreground text-background rounded-lg hover:bg-foreground/80 transition-colors"
             >
               <Instagram className="h-6 w-6" />
             </a>
@@ -315,7 +317,7 @@ export function SophiaMusicPage() {
               href="https://youtube.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-3 bg-foreground text-background hover:bg-foreground/80 transition-colors"
+              className="p-3 bg-foreground text-background rounded-lg hover:bg-foreground/80 transition-colors"
             >
               <Youtube className="h-6 w-6" />
             </a>
@@ -323,7 +325,7 @@ export function SophiaMusicPage() {
               href="https://spotify.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="p-3 bg-foreground text-background hover:bg-foreground/80 transition-colors"
+              className="p-3 bg-foreground text-background rounded-lg hover:bg-foreground/80 transition-colors"
             >
               <Music className="h-6 w-6" />
             </a>

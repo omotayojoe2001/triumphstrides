@@ -70,11 +70,11 @@ export function ProductDetailPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
           {/* Image Gallery */}
           <div className="space-y-4">
-            <div className="aspect-square bg-muted">
+            <div className="aspect-square bg-muted rounded-xl">
               <img 
                 src={product.images[selectedImage] || '/placeholder.svg'} 
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover rounded-xl"
               />
             </div>
             {product.images.length > 1 && (
@@ -84,11 +84,11 @@ export function ProductDetailPage() {
                     key={index}
                     onClick={() => setSelectedImage(index)}
                     className={cn(
-                      "w-20 h-20 shrink-0 bg-muted",
+                      "w-20 h-20 shrink-0 bg-muted rounded-lg",
                       selectedImage === index && "ring-2 ring-primary"
                     )}
                   >
-                    <img src={image} alt="" className="w-full h-full object-cover" />
+                    <img src={image} alt="" className="w-full h-full object-cover rounded-lg" />
                   </button>
                 ))}
               </div>
@@ -111,12 +111,12 @@ export function ProductDetailPage() {
             <div>
               {selectedVariant?.inStock ? (
                 <span className="inline-flex items-center text-sm text-primary font-medium">
-                  <span className="h-2 w-2 bg-primary mr-2"></span>
+                  <span className="h-2 w-2 rounded-full bg-primary mr-2"></span>
                   In Stock
                 </span>
               ) : (
                 <span className="inline-flex items-center text-sm text-destructive font-medium">
-                  <span className="h-2 w-2 bg-destructive mr-2"></span>
+                  <span className="h-2 w-2 rounded-full bg-destructive mr-2"></span>
                   Out of Stock
                 </span>
               )}
@@ -132,7 +132,7 @@ export function ProductDetailPage() {
                       key={variant.id}
                       onClick={() => setSelectedVariantId(variant.id)}
                       className={cn(
-                        "px-4 py-2 border text-sm font-medium transition-colors",
+                        "px-4 py-2 border rounded-lg text-sm font-medium transition-colors",
                         selectedVariantId === variant.id
                           ? "border-primary bg-primary text-primary-foreground"
                           : "border-border hover:border-foreground"

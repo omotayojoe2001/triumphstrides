@@ -66,8 +66,8 @@ export function ServiceRequestModal({ isOpen, onClose, preselectedService }: Ser
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       <div className="absolute inset-0 bg-foreground/50" onClick={onClose} />
       
-      <div className="relative bg-background w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
-        <div className="sticky top-0 bg-background border-b border-border p-4 flex items-center justify-between">
+      <div className="relative bg-background rounded-xl w-full max-w-lg mx-4 max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-background border-b border-border rounded-t-xl p-4 flex items-center justify-between">
           <h2 className="text-xl font-semibold">Request a Service</h2>
           <button onClick={onClose} className="p-2 hover:bg-muted transition-colors">
             <X className="h-5 w-5" />

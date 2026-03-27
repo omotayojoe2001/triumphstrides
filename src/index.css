@@ -6,49 +6,51 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 0 0% 0%;
+    --background: 40 20% 99%;
+    --foreground: 160 10% 10%;
 
     --card: 0 0% 100%;
-    --card-foreground: 0 0% 0%;
+    --card-foreground: 160 10% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 0%;
+    --popover-foreground: 160 10% 10%;
 
     --primary: 152 79% 27%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 96%;
-    --secondary-foreground: 0 0% 0%;
+    --secondary: 38 80% 55%;
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 0 0% 96%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 40 20% 95%;
+    --muted-foreground: 160 5% 40%;
 
-    --accent: 152 79% 27%;
+    --accent: 38 80% 55%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 90%;
-    --input: 0 0% 90%;
+    --border: 40 10% 88%;
+    --input: 40 10% 88%;
     --ring: 152 79% 27%;
 
-    --radius: 0.125rem;
+    --radius: 0.75rem;
 
     /* Custom brand tokens */
     --brand-green: 152 79% 27%;
     --brand-green-light: 152 60% 95%;
     --brand-green-dark: 152 79% 20%;
-    --brand-black: 0 0% 0%;
+    --brand-amber: 38 80% 55%;
+    --brand-amber-light: 38 80% 95%;
+    --brand-black: 160 10% 10%;
     --brand-white: 0 0% 100%;
-    --brand-gray: 0 0% 45%;
-    --brand-gray-light: 0 0% 96%;
+    --brand-gray: 160 5% 40%;
+    --brand-gray-light: 40 20% 95%;
 
     /* Shadows */
-    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.06), 0 1px 2px -1px rgb(0 0 0 / 0.06);
+    --shadow-md: 0 4px 8px -2px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.06);
+    --shadow-lg: 0 12px 24px -4px rgb(0 0 0 / 0.12), 0 4px 8px -2px rgb(0 0 0 / 0.04);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 0 0% 20%;
@@ -138,7 +140,7 @@
   }
 
   .card-elevated {
-    @apply bg-card border border-border shadow-sm hover:shadow-md transition-shadow duration-200;
+    @apply bg-card border border-border rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200;
   }
 
   .section-padding {
@@ -181,5 +183,20 @@
       opacity: 1;
       transform: translateY(0);
     }
+  }
+
+  @keyframes shimmer {
+    0% {
+      background-position: -200% 0;
+    }
+    100% {
+      background-position: 200% 0;
+    }
+  }
+
+  .animate-shimmer {
+    background: linear-gradient(90deg, transparent 0%, hsl(var(--primary) / 0.08) 50%, transparent 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
   }
 }

@@ -30,6 +30,7 @@ export interface Service {
   whoFor: string;
   includes: string[];
   icon: string;
+  image: string;
   cta: string;
   ctaAction: string;
 }

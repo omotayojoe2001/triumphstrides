@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, Check } from 'lucide-react';
+import { ArrowRight, Check, Target } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 export function AboutPage() {
@@ -69,12 +69,12 @@ export function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="aspect-square bg-muted relative overflow-hidden">
+            <div className="aspect-square bg-muted rounded-xl relative overflow-hidden">
               <div className="grid grid-cols-2 grid-rows-2 h-full gap-2 p-4">
-                <img src="/products/palmoil(small).jpg" alt="" className="w-full h-full object-cover" />
-                <img src="/products/ijebugarri.jpg" alt="" className="w-full h-full object-cover" />
-                <img src="/products/fufu.jpg" alt="" className="w-full h-full object-cover" />
-                <img src="/products/driedzobo.jpg" alt="" className="w-full h-full object-cover" />
+                <img src="/products/palmoil(small).jpg" alt="" className="w-full h-full object-cover rounded-lg" />
+                <img src="/sophiaimagemain.jpeg" alt="" className="w-full h-full object-cover rounded-lg" />
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&h=400&fit=crop" alt="" className="w-full h-full object-cover rounded-lg" />
+                <img src="/products/driedzobo.jpg" alt="" className="w-full h-full object-cover rounded-lg" />
               </div>
             </div>
           </div>
@@ -84,10 +84,15 @@ export function AboutPage() {
       {/* Our Values */}
       <section className="section-padding bg-muted">
         <div className="container-tight">
-          <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">Our Values</h2>
+          <div className="text-center mb-12">
+            <span className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-1.5 rounded-full text-sm font-medium mb-4">
+              <Target className="h-4 w-4" /> What drives us
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold">Our Values</h2>
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {values.map((value, index) => (
-              <div key={index} className="bg-background p-6 border border-border">
+              <div key={index} className="bg-background rounded-xl p-6 border border-border shadow-sm hover:shadow-md transition-shadow">
                 <h3 className="font-semibold mb-2">{value.title}</h3>
                 <p className="text-sm text-muted-foreground">{value.description}</p>
               </div>
@@ -100,9 +105,9 @@ export function AboutPage() {
       <section className="section-padding">
         <div className="container-tight">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 aspect-square bg-muted relative overflow-hidden">
+            <div className="order-2 lg:order-1 aspect-square bg-muted rounded-xl relative overflow-hidden">
               <img 
-                src="/products/grindedcrayfish.jpg" 
+                src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=800&h=800&fit=crop" 
                 alt="Why Choose Us"
                 className="w-full h-full object-cover"
               />
@@ -113,7 +118,7 @@ export function AboutPage() {
               <ul className="space-y-3">
                 {whyChooseUs.map((item, index) => (
                   <li key={index} className="flex items-start gap-3">
-                    <div className="h-5 w-5 bg-primary flex items-center justify-center shrink-0 mt-0.5">
+                    <div className="h-5 w-5 bg-primary rounded-md flex items-center justify-center shrink-0 mt-0.5">
                       <Check className="h-3 w-3 text-primary-foreground" />
                     </div>
                     <span className="text-muted-foreground">{item}</span>
@@ -147,7 +152,7 @@ export function AboutPage() {
                 </Link>
               </Button>
             </div>
-            <div className="aspect-square bg-background/10 relative overflow-hidden">
+            <div className="aspect-square bg-background/10 rounded-xl relative overflow-hidden">
               <img 
                 src="/sophiaimagesecondary.jpeg" 
                 alt="Sophia Music"

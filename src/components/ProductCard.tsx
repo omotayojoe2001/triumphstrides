@@ -32,11 +32,11 @@ export function ProductCard({ product, className }: ProductCardProps) {
     <Link 
       to={`/product/${product.id}`}
       className={cn(
-        "group block bg-card border border-border hover:shadow-md transition-all hover:scale-105 duration-300",
+        "group block bg-card border border-border rounded-xl shadow-sm hover:shadow-lg transition-all hover:-translate-y-1 duration-300",
         className
       )}
     >
-      <div className="aspect-square bg-muted relative overflow-hidden">
+      <div className="aspect-square bg-muted relative overflow-hidden rounded-t-xl">
         {product.images[0] && product.images[0] !== '/placeholder.svg' ? (
           <img 
             src={product.images[0]} 
@@ -53,13 +53,13 @@ export function ProductCard({ product, className }: ProductCardProps) {
         )}
         {!firstVariant?.inStock && (
           <div className="absolute inset-0 bg-foreground/50 flex items-center justify-center">
-            <span className="bg-background px-3 py-1 text-sm font-medium">Out of Stock</span>
+            <span className="bg-background px-3 py-1 rounded-md text-sm font-medium">Out of Stock</span>
           </div>
         )}
       </div>
       
       <div className="p-4">
-        <p className="text-xs text-muted-foreground mb-1">{product.category}</p>
+        <p className="text-xs text-muted-foreground mb-1 uppercase tracking-wide">{product.category}</p>
         <h3 className="font-medium text-foreground group-hover:text-primary transition-colors line-clamp-2">
           {product.name}
         </h3>

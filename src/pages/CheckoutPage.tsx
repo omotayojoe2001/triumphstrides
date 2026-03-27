@@ -101,7 +101,7 @@ export function CheckoutPage() {
             {['info', 'review', 'payment'].map((s, i) => (
               <div key={s} className="flex items-center">
                 <div className={cn(
-                  "h-8 w-8 flex items-center justify-center text-sm font-medium",
+                  "h-8 w-8 rounded-full flex items-center justify-center text-sm font-medium",
                   step === s ? "bg-primary text-primary-foreground" : 
                   ['info', 'review', 'payment'].indexOf(step) > i ? "bg-foreground text-background" : "bg-muted-foreground/30 text-muted-foreground"
                 )}>
@@ -120,7 +120,7 @@ export function CheckoutPage() {
           <div className="lg:col-span-2">
             {step === 'info' && (
               <form onSubmit={handleSubmitInfo} className="space-y-6">
-                <div className="border border-border p-6 space-y-4">
+                <div className="border border-border rounded-xl p-6 space-y-4">
                   <h2 className="text-xl font-semibold">Contact Information</h2>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -157,14 +157,14 @@ export function CheckoutPage() {
                   </div>
                 </div>
 
-                <div className="border border-border p-6 space-y-4">
+                <div className="border border-border rounded-xl p-6 space-y-4">
                   <h2 className="text-xl font-semibold">Delivery Method</h2>
                   
                   <RadioGroup 
                     value={formData.deliveryMethod} 
                     onValueChange={(value) => setFormData(prev => ({ ...prev, deliveryMethod: value as 'delivery' | 'pickup' }))}
                   >
-                    <div className="flex items-center space-x-3 p-4 border border-border cursor-pointer hover:bg-muted">
+                    <div className="flex items-center space-x-3 p-4 border border-border rounded-lg cursor-pointer hover:bg-muted">
                       <RadioGroupItem value="delivery" id="delivery" />
                       <Label htmlFor="delivery" className="flex-1 cursor-pointer">
                         <span className="font-medium">Delivery</span>
@@ -173,7 +173,7 @@ export function CheckoutPage() {
                         </span>
                       </Label>
                     </div>
-                    <div className="flex items-center space-x-3 p-4 border border-border cursor-pointer hover:bg-muted">
+                    <div className="flex items-center space-x-3 p-4 border border-border rounded-lg cursor-pointer hover:bg-muted">
                       <RadioGroupItem value="pickup" id="pickup" />
                       <Label htmlFor="pickup" className="flex-1 cursor-pointer">
                         <span className="font-medium">Pickup</span>
@@ -222,7 +222,7 @@ export function CheckoutPage() {
 
             {step === 'review' && (
               <div className="space-y-6">
-                <div className="border border-border p-6 space-y-4">
+                <div className="border border-border rounded-xl p-6 space-y-4">
                   <div className="flex items-center justify-between">
                     <h2 className="text-xl font-semibold">Review Your Order</h2>
                     <Button variant="ghost" onClick={() => setStep('info')}>Edit</Button>
@@ -251,12 +251,12 @@ export function CheckoutPage() {
                   </div>
                 </div>
 
-                <div className="border border-border p-6 space-y-4">
+                <div className="border border-border rounded-xl p-6 space-y-4">
                   <h3 className="font-semibold">Order Items</h3>
                   {cartItems.map(({ productId, variantId, quantity, note, product, variant }) => (
                     <div key={`${productId}-${variantId}`} className="flex gap-4 py-3 border-b border-border last:border-0">
-                      <div className="w-16 h-16 bg-muted">
-                        <img src={product!.images[0]} alt="" className="w-full h-full object-cover" />
+                      <div className="w-16 h-16 bg-muted rounded-lg">
+                        <img src={product!.images[0]} alt="" className="w-full h-full object-cover rounded-lg" />
                       </div>
                       <div className="flex-1">
                         <p className="font-medium">{product!.name}</p>
@@ -286,7 +286,7 @@ export function CheckoutPage() {
 
             {step === 'payment' && (
               <div className="space-y-6">
-                <div className="border border-border p-6 space-y-4">
+                <div className="border border-border rounded-xl p-6 space-y-4">
                   <h2 className="text-xl font-semibold">Payment</h2>
                   
                   <MonerisCheckout
@@ -306,7 +306,7 @@ export function CheckoutPage() {
 
           {/* Order Summary Sidebar */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 border border-border bg-background p-6 space-y-4">
+            <div className="sticky top-24 border border-border rounded-xl bg-background p-6 space-y-4">
               <h2 className="text-xl font-bold">Order Summary</h2>
               
               <div className="space-y-3 text-sm max-h-64 overflow-y-auto">

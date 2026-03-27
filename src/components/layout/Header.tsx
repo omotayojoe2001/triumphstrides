@@ -22,12 +22,10 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 bg-background border-b border-border">
       <div className="container-tight">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-20 md:h-24">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2">
-            <span className="text-xl md:text-2xl font-bold text-foreground">
-              Triumph Strides Store
-            </span>
+            <img src="/logo.png" alt="Triumph Strides Store" className="h-16 md:h-24 w-auto" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -56,7 +54,7 @@ export function Header() {
             >
               <ShoppingCart className="h-5 w-5" />
               {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center bg-primary text-primary-foreground text-xs font-medium">
+                <span className="absolute -top-1 -right-1 h-5 w-5 rounded-full flex items-center justify-center bg-accent text-accent-foreground text-xs font-bold shadow-sm">
                   {itemCount}
                 </span>
               )}

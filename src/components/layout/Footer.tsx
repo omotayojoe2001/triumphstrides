@@ -5,12 +5,12 @@ import { Button } from '@/components/ui/button';
 
 export function Footer() {
   return (
-    <footer className="bg-foreground text-background">
+    <footer className="bg-gradient-to-b from-foreground to-foreground/95 text-background">
       <div className="container-tight py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="space-y-4">
-            <h3 className="text-xl font-bold">Triumph Strides Store</h3>
+            <img src="/logo.png" alt="Triumph Strides Store" className="h-16 w-auto brightness-0 invert" />
             <p className="text-background/70 text-sm leading-relaxed">
               Quality African foods and trusted services in Calgary. 
               Serving our community with excellence.
@@ -67,7 +67,7 @@ export function Footer() {
                 href="https://facebook.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 bg-background/10 hover:bg-background/20 transition-colors"
+                className="p-2 bg-background/10 rounded-lg hover:bg-background/20 transition-colors"
                 aria-label="Facebook"
               >
                 <Facebook className="h-5 w-5" />
@@ -76,7 +76,7 @@ export function Footer() {
                 href="https://instagram.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 bg-background/10 hover:bg-background/20 transition-colors"
+                className="p-2 bg-background/10 rounded-lg hover:bg-background/20 transition-colors"
                 aria-label="Instagram"
               >
                 <Instagram className="h-5 w-5" />
@@ -85,7 +85,7 @@ export function Footer() {
                 href="https://tiktok.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="p-2 bg-background/10 hover:bg-background/20 transition-colors"
+                className="p-2 bg-background/10 rounded-lg hover:bg-background/20 transition-colors"
                 aria-label="TikTok"
               >
                 <Music2 className="h-5 w-5" />

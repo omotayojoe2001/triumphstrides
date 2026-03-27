@@ -62,17 +62,9 @@ export function ServicesPage() {
               }`}
             >
               <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                <div className="aspect-video bg-background border border-border relative overflow-hidden">
+                <div className="aspect-video bg-background border border-border rounded-xl relative overflow-hidden">
                   <img 
-                    src={
-                      service.id === 'event-catering' ? 'https://images.unsplash.com/photo-1555244162-803834f70033?w=800&h=600&fit=crop' :
-                      service.id === 'daycare' ? 'https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=800&h=600&fit=crop' :
-                      service.id === 'ranch-service' ? 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=800&h=600&fit=crop' :
-                      service.id === 'cleaning' ? 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?w=800&h=600&fit=crop' :
-                      service.id === 'event-planning' ? 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop' :
-                      service.id === 'event-coverage' ? '/sophiaimagemain.jpeg' :
-                      '/products/palmoil(small).jpg'
-                    }
+                    src={service.image}
                     alt={service.title}
                     className="w-full h-full object-cover"
                   />
@@ -93,7 +85,7 @@ export function ServicesPage() {
                   <ul className="space-y-1">
                     {service.includes.map((item, i) => (
                       <li key={i} className="text-sm text-muted-foreground flex items-start gap-2">
-                        <span className="h-1.5 w-1.5 bg-primary mt-2 shrink-0"></span>
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary mt-2 shrink-0"></span>
                         {item}
                       </li>
                     ))}
@@ -102,7 +94,7 @@ export function ServicesPage() {
 
                 <button 
                   onClick={() => handleRequestService(service.id)}
-                  className="bg-primary text-primary-foreground px-6 py-3 font-medium hover:bg-primary/90 transition-colors"
+                  className="bg-primary text-primary-foreground rounded-lg px-6 py-3 font-medium hover:bg-primary/90 transition-colors"
                 >
                   {service.cta}
                 </button>

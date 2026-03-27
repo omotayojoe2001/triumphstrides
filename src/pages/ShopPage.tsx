@@ -184,7 +184,7 @@ export function ShopPage() {
 
             {/* Mobile Filters */}
             {showMobileFilters && (
-              <div className="lg:hidden mb-6 p-4 border border-border bg-background space-y-4">
+              <div className="lg:hidden mb-6 p-4 border border-border rounded-xl bg-background space-y-4">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="font-semibold">Filters</h3>
                   <button onClick={() => setShowMobileFilters(false)}>
@@ -200,7 +200,7 @@ export function ShopPage() {
                         key={category}
                         onClick={() => setSelectedCategory(category)}
                         className={cn(
-                          "px-3 py-1.5 text-sm border transition-colors",
+                          "px-3 py-1.5 text-sm border rounded-lg transition-colors",
                           selectedCategory === category 
                             ? "bg-primary text-primary-foreground border-primary" 
                             : "border-border hover:bg-muted"
@@ -226,7 +226,7 @@ export function ShopPage() {
                         key={range.value}
                         onClick={() => setPriceRange(range.value)}
                         className={cn(
-                          "px-3 py-1.5 text-sm border transition-colors",
+                          "px-3 py-1.5 text-sm border rounded-lg transition-colors",
                           priceRange === range.value 
                             ? "bg-primary text-primary-foreground border-primary" 
                             : "border-border hover:bg-muted"
@@ -245,7 +245,7 @@ export function ShopPage() {
               <div className="flex flex-wrap items-center gap-2 mb-6">
                 <span className="text-sm text-muted-foreground">Active filters:</span>
                 {selectedCategory !== 'All' && (
-                  <span className="inline-flex items-center gap-1 px-2 py-1 bg-muted text-sm">
+                  <span className="inline-flex items-center gap-1 px-2 py-1 bg-muted rounded-md text-sm">
                     {selectedCategory}
                     <button onClick={() => setSelectedCategory('All')}>
                       <X className="h-3 w-3" />
@@ -253,7 +253,7 @@ export function ShopPage() {
                   </span>
                 )}
                 {searchQuery && (
-                  <span className="inline-flex items-center gap-1 px-2 py-1 bg-muted text-sm">
+                  <span className="inline-flex items-center gap-1 px-2 py-1 bg-muted rounded-md text-sm">
                     "{searchQuery}"
                     <button onClick={() => setSearchQuery('')}>
                       <X className="h-3 w-3" />
@@ -261,7 +261,7 @@ export function ShopPage() {
                   </span>
                 )}
                 {priceRange !== 'all' && (
-                  <span className="inline-flex items-center gap-1 px-2 py-1 bg-muted text-sm">
+                  <span className="inline-flex items-center gap-1 px-2 py-1 bg-muted rounded-md text-sm">
                     {priceRange === 'under10' ? 'Under $10' : 
                      priceRange === '10-20' ? '$10-$20' :
                      priceRange === '20-50' ? '$20-$50' : 'Over $50'}

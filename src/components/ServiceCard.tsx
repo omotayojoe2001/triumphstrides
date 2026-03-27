@@ -1,10 +1,9 @@
 import { Link } from 'react-router-dom';
 import { 
   Tractor, Baby, ChefHat, Camera, CalendarDays, Sparkles, Music,
-  LucideIcon
+  LucideIcon, ArrowRight
 } from 'lucide-react';
 import { Service } from '@/lib/types';
-import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 
 const iconMap: Record<string, LucideIcon> = {
@@ -27,36 +26,32 @@ export function ServiceCard({ service, className, onRequestService }: ServiceCar
   const Icon = iconMap[service.icon] || Sparkles;
 
   const handleClick = () => {
-    if (service.ctaAction === 'sophia-music') {
-      return; // Link handles navigation
-    }
+    if (service.ctaAction === 'sophia-music') return;
     onRequestService?.(service.id);
   };
 
   const content = (
     <div className={cn(
-      "bg-card border border-border p-6 h-full flex flex-col hover:shadow-lg hover:scale-105 transition-all duration-300",
+      "group relative rounded-xl overflow-hidden h-72 flex flex-col justify-end cursor-pointer",
       className
     )}>
-      <div className="h-12 w-12 bg-primary/10 flex items-center justify-center mb-4 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-        <Icon className="h-6 w-6 text-primary" />
+      <img 
+        src={service.image} 
+        alt={service.title}
+        className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-foreground/90 via-foreground/50 to-transparent" />
+      
+      <div className="relative z-10 p-5 text-background">
+        <div className="h-10 w-10 bg-primary rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform duration-300">
+          <Icon className="h-5 w-5 text-primary-foreground" />
+        </div>
+        <h3 className="text-lg font-semibold mb-1">{service.title}</h3>
+        <p className="text-sm text-background/70 line-clamp-2 mb-3">{service.description}</p>
+        <span className="inline-flex items-center gap-1 text-sm font-medium text-primary group-hover:gap-2 transition-all">
+          {service.cta} <ArrowRight className="h-4 w-4" />
+        </span>
       </div>
-      
-      <h3 className="text-lg font-semibold text-foreground mb-2">
-        {service.title}
-      </h3>
-      
-      <p className="text-sm text-muted-foreground mb-4 flex-1">
-        {service.description}
-      </p>
-      
-      <Button 
-        variant="outline" 
-        className="w-full border-foreground hover:bg-foreground hover:text-background"
-        onClick={service.ctaAction !== 'sophia-music' ? handleClick : undefined}
-      >
-        {service.cta}
-      </Button>
     </div>
   );
 
@@ -68,5 +63,5 @@ export function ServiceCard({ service, className, onRequestService }: ServiceCar
     );
   }
 
-  return content;
+  return <div onClick={handleClick}>{content}</div>;
 }

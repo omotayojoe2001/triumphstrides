@@ -29,7 +29,7 @@ export function FloatingButtons() {
       <button
         onClick={scrollToTop}
         className={cn(
-          "h-10 w-10 flex items-center justify-center border-2 border-foreground bg-background text-foreground",
+          "h-10 w-10 rounded-full flex items-center justify-center border-2 border-foreground bg-background text-foreground",
           "hover:bg-foreground hover:text-background transition-all duration-300",
           showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         )}
@@ -41,7 +41,7 @@ export function FloatingButtons() {
       {/* WhatsApp */}
       <button
         onClick={openWhatsApp}
-        className="h-12 w-12 flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-lg"
+        className="h-12 w-12 rounded-full flex items-center justify-center bg-primary text-primary-foreground hover:bg-primary/90 transition-colors shadow-lg"
         aria-label="Chat on WhatsApp"
       >
         <MessageCircle className="h-6 w-6" />

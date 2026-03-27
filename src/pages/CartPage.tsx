@@ -66,13 +66,13 @@ export function CartPage() {
               return (
                 <div 
                   key={`${productId}-${variantId}`}
-                  className="flex gap-4 p-4 border border-border bg-background"
+                  className="flex gap-4 p-4 border border-border rounded-xl bg-background"
                 >
-                  <Link to={`/product/${productId}`} className="w-24 h-24 bg-muted shrink-0">
+                  <Link to={`/product/${productId}`} className="w-24 h-24 bg-muted rounded-lg shrink-0">
                     <img 
                       src={product!.images[0]} 
                       alt={product!.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover rounded-lg"
                     />
                   </Link>
                   
@@ -140,7 +140,7 @@ export function CartPage() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="sticky top-24 border border-border bg-background p-6 space-y-6">
+            <div className="sticky top-24 border border-border rounded-xl bg-background p-6 space-y-6">
               <h2 className="text-xl font-bold">Order Summary</h2>
               
               <div className="space-y-2 text-sm">
