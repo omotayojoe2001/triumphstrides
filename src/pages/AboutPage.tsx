@@ -71,10 +71,10 @@ export function AboutPage() {
             </div>
             <div className="aspect-square bg-muted rounded-xl relative overflow-hidden">
               <div className="grid grid-cols-2 grid-rows-2 h-full gap-2 p-4">
-                <img src="/products/palmoil(small).jpg" alt="" className="w-full h-full object-cover rounded-lg" />
                 <img src="/sophiaimagemain.jpeg" alt="" className="w-full h-full object-cover rounded-lg" />
-                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=400&h=400&fit=crop" alt="" className="w-full h-full object-cover rounded-lg" />
+                <img src="/products/palmoil(small).jpg" alt="" className="w-full h-full object-cover rounded-lg" />
                 <img src="/products/driedzobo.jpg" alt="" className="w-full h-full object-cover rounded-lg" />
+                <img src="/sophiaimagesecondary.jpeg" alt="" className="w-full h-full object-cover rounded-lg" />
               </div>
             </div>
           </div>
