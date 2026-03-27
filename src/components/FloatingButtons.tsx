@@ -24,12 +24,12 @@ export function FloatingButtons() {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-40">
+    <div className="fixed bottom-6 right-4 sm:right-6 flex flex-col gap-3 z-50">
       {/* Scroll to Top */}
       <button
         onClick={scrollToTop}
         className={cn(
-          "h-10 w-10 rounded-full flex items-center justify-center border-2 border-foreground bg-background text-foreground",
+          "h-10 w-10 rounded-full flex items-center justify-center border-2 border-foreground bg-background text-foreground shadow-md",
           "hover:bg-foreground hover:text-background transition-all duration-300",
           showScrollTop ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"
         )}

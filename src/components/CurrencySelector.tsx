@@ -14,7 +14,7 @@ export function CurrencySelector() {
   const { currency, setCurrency } = useCart();
 
   return (
-    <div className="fixed bottom-24 right-6 z-40">
+    <div className="fixed bottom-24 right-6 z-40 hidden sm:block">
       <div className="bg-background border-2 border-primary rounded-xl shadow-lg p-3 flex items-center gap-2">
         <Globe className="h-4 w-4 text-primary" />
         <Select value={currency.code} onValueChange={(value) => setCurrency(value as Currency)}>
