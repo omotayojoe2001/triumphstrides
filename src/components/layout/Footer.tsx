@@ -55,11 +55,11 @@ export function Footer() {
                 <span>info@triumphstridesstore.com</span>
               </a>
               <a 
-                href="tel:+1234567890" 
+                href="tel:+14033895009" 
                 className="flex items-center gap-2 text-sm text-background/70 hover:text-background transition-colors"
               >
                 <Phone className="h-4 w-4" />
-                <span>+1 (234) 567-890</span>
+                <span>+1 (403) 389-5009</span>
               </a>
             </div>
             <div className="flex gap-4 pt-2">

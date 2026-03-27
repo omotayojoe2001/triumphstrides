@@ -20,7 +20,7 @@ export function FloatingButtons() {
 
   const openWhatsApp = () => {
     const message = encodeURIComponent("Hi Triumph Strides Store, I need help with my order.");
-    window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
+    window.open(`https://wa.me/14033895009?text=${message}`, '_blank');
   };
 
   return (

@@ -43,7 +43,7 @@ export function ContactPage() {
 
   const openWhatsApp = () => {
     const message = encodeURIComponent("Hi Triumph Strides Store, I have a question.");
-    window.open(`https://wa.me/1234567890?text=${message}`, '_blank');
+    window.open(`https://wa.me/14033895009?text=${message}`, '_blank');
   };
 
   return (
@@ -155,8 +155,8 @@ export function ContactPage() {
                     </div>
                     <div>
                       <h3 className="font-medium">Phone</h3>
-                      <a href="tel:+1234567890" className="text-muted-foreground hover:text-primary">
-                        +1 (234) 567-890
+                      <a href="tel:+14033895009" className="text-muted-foreground hover:text-primary">
+                        +1 (403) 389-5009
                       </a>
                     </div>
                   </div>
@@ -203,7 +203,7 @@ export function ContactPage() {
                     variant="outline"
                     className="border-foreground hover:bg-foreground hover:text-background"
                   >
-                    <a href="tel:+1234567890">
+                    <a href="tel:+14033895009">
                       <Phone className="h-4 w-4 mr-2" />
                       Call Now
                     </a>
